@@ -1,0 +1,33 @@
+<idea-plugin>
+  <id>com.asysbang.pmaven</id>
+  <name>P-Maven</name>
+  <version>1.0</version>
+  <vendor email="asysbang@163.com" url="http://www.asysbang.com">Asysbang</vendor>
+
+  <description>https://github.com/asysbang/P-Maven.git https://github.com/asysbang/P-Maven.git https://github.com/asysbang/P-Maven.git</description>
+
+  <change-notes>https://github.com/asysbang/P-Maven.git https://github.com/asysbang/P-Maven.git https://github.com/asysbang/P-Maven.git</change-notes>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+  <idea-version since-build="173.0"/>
+
+  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <toolWindow id="pmvn_window" factoryClass="com.asysbang.pmvn.window.MainWindow" anchor="right" icon="/window/icon.png"></toolWindow>
+  </extensions>
+
+  <actions>
+    <group id="pmvn_menu" text="PMaven">
+      <add-to-group group-id="MainMenu" anchor="last"></add-to-group>
+    </group>
+    <group id="pmvn_menu_test" text="PMavenTest">
+      <add-to-group group-id="MainMenu" anchor="last"></add-to-group>
+    </group>
+  </actions>
+
+</idea-plugin>
