@@ -1,33 +1,64 @@
 <idea-plugin>
-  <id>com.asysbang.pmaven</id>
-  <name>P-Maven</name>
-  <version>1.0</version>
-  <vendor email="asysbang@163.com" url="http://www.asysbang.com">Asysbang</vendor>
+    <id>com.asysbang.pmaven</id>
+    <name>P-Maven</name>
+    <version>1.0</version>
+    <vendor email="asysbang@163.com" url="http://www.asysbang.com">Asysbang</vendor>
 
-  <description>https://github.com/asysbang/P-Maven.git https://github.com/asysbang/P-Maven.git https://github.com/asysbang/P-Maven.git</description>
+    <description>https://github.com/asysbang/P-Maven.git https://github.com/asysbang/P-Maven.git
+        https://github.com/asysbang/P-Maven.git
+    </description>
 
-  <change-notes>https://github.com/asysbang/P-Maven.git https://github.com/asysbang/P-Maven.git https://github.com/asysbang/P-Maven.git</change-notes>
+    <change-notes>https://github.com/asysbang/P-Maven.git https://github.com/asysbang/P-Maven.git
+        https://github.com/asysbang/P-Maven.git
+    </change-notes>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-  <idea-version since-build="173.0"/>
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <idea-version since-build="173.0"/>
 
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-       on how to target different products -->
-  <!-- uncomment to enable plugin in all products
-  <depends>com.intellij.modules.lang</depends>
-  -->
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
 
-  <extensions defaultExtensionNs="com.intellij">
-    <toolWindow id="pmvn_window" factoryClass="com.asysbang.pmvn.window.MainWindow" anchor="right" icon="/window/icon.png"></toolWindow>
-  </extensions>
+    <extensions defaultExtensionNs="com.intellij">
+        <toolWindow id="pmvn_window" factoryClass="com.asysbang.pmvn.window.MainWindow" anchor="right"
+                    icon="/window/icon.png"></toolWindow>
+        <toolWindow id="test" factoryClass="com.asysbang.pmvn.test.TestWindow" anchor="bottom" icon="/window/icon.png"
+                    secondary="true" >
+        </toolWindow>
+    </extensions>
 
-  <actions>
-    <group id="pmvn_menu" text="PMaven">
-      <add-to-group group-id="MainMenu" anchor="last"></add-to-group>
-    </group>
-    <group id="pmvn_menu_test" text="PMavenTest">
-      <add-to-group group-id="MainMenu" anchor="last"></add-to-group>
-    </group>
-  </actions>
+    <actions>
+        <group id="pmvn_menu" text="PMaven">
+            <add-to-group group-id="MainMenu" anchor="last"></add-to-group>
+        </group>
+
+        <group id="pmvn_menu_test" text="PMavenTest">
+            <add-to-group group-id="MainMenu" anchor="last"></add-to-group>
+
+        </group>
+
+        <action class="com.asysbang.pmvn.test.action.TestDownloadAction" text="Download">
+            <add-to-group group-id="pmvn_menu_test"/>
+        </action>
+        <action class="com.asysbang.pmvn.test.action.TestGenerateClassAction" text="Generate Class File">
+            <add-to-group group-id="pmvn_menu_test"/>
+        </action>
+
+        <group id="test_group" text="Shell" popup="true">
+            <add-to-group group-id="pmvn_menu_test" anchor="last"/>
+            <action class="com.asysbang.pmvn.test.action.TestGradleAction" id="test_gradle" text="Gradle"/>
+            <action class="com.asysbang.pmvn.test.action.TestBuildAction" id="popup_b" text="Popup Demo"/>
+            <action class="com.asysbang.pmvn.test.action.TestAction" id="popup_c" text="Test_C"/>
+        </group>
+
+    </actions>
+
+    <application-components>
+        <component>
+            <implementation-class>com.asysbang.pmvn.MainApp</implementation-class>
+        </component>
+    </application-components>
 
 </idea-plugin>
