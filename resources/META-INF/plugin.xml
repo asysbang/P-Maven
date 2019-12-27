@@ -53,6 +53,12 @@
             <action class="com.asysbang.pmvn.test.action.TestAction" id="popup_c" text="Test_C"/>
         </group>
 
+        <!-- 右键菜单-->
+        <action id="TestRightKeyAction" class="com.asysbang.pmvn.test.action.TestRightKeyAction" text="RightKeyAction" description="RightKeyAction">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="before" relative-to-action="FindUsages"/>
+         </action>
+
+
     </actions>
 
     <application-components>
