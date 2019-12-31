@@ -1,12 +1,12 @@
-package com.asysbang.pmvn.bean;
+package com.asysbang.pmvn.test.action.module;
 
 
 /**
  * model 信息 实体类
  */
-public class MoInfo {
+public class ModuleInfo {
 
-    private String name;
+
 
     public String getName() {
         return name;
@@ -48,13 +48,16 @@ public class MoInfo {
         this.url = url;
     }
 
+    private String name;
     private String api;
     private int version;
     private int state;
     private String url;
 
+    public ModuleInfo() {
 
-    public MoInfo(String name, String api, int version, int state, String url) {
+    }
+    public ModuleInfo(String name, String api, int version, int state, String url) {
         this.name = name;
         this.api = api;
         this.version = version;

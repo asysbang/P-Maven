@@ -1,5 +1,6 @@
 package com.asysbang.pmvn;
 
+import com.asysbang.pmvn.test.action.module.ModuleManager;
 import com.asysbang.pmvn.util.Log;
 import com.intellij.openapi.components.ProjectComponent;
 
@@ -10,6 +11,7 @@ public class MainApp implements ProjectComponent {
     @Override
     public void initComponent() {
         verifyRootDir();
+        ModuleManager.getInstance().loadModules();
     }
 
     //不确定触发条件

@@ -1,7 +1,8 @@
 package com.asysbang.pmvn.window;
 
-import com.asysbang.pmvn.bean.MoInfo;
+import com.asysbang.pmvn.test.action.module.ModuleInfo;
 import com.asysbang.pmvn.test.TestUtil;
+import com.asysbang.pmvn.test.action.module.ModuleManager;
 import com.asysbang.pmvn.util.Log;
 
 import javax.swing.*;
@@ -10,14 +11,21 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RemoteModulePanel extends JPanel {
 
     private static final int COLUMN_NUM = 4;
     private static final String[] COLUMN_NAMES = {"Name", "Api", "Version", "State"};
+    private final ActionListener btnListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            
+        }
+    };
     private BottomPanel mBottomPanel;
     private JTable dataTable;
     private ListSelectionListener selectionListener = new ListSelectionListener() {
@@ -34,10 +42,19 @@ public class RemoteModulePanel extends JPanel {
         }
     };
 
-    private List<MoInfo> infos;
+    private List<ModuleInfo> infos;
 
     public RemoteModulePanel() {
-        infos = TestUtil.mockMoInfoList();
+        //this should be  shown in progressbar
+        ModuleManager moduleManager = ModuleManager.getInstance();
+        while (!moduleManager.isLoaded()) {
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        infos = ModuleManager.getInstance().getModules();
         initScrollTable();
     }
 
@@ -68,7 +85,7 @@ public class RemoteModulePanel extends JPanel {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            MoInfo info = infos.get(rowIndex);
+            ModuleInfo info = infos.get(rowIndex);
             switch (columnIndex) {
                 case 0:
                     return info.getName();
@@ -94,6 +111,7 @@ public class RemoteModulePanel extends JPanel {
         private JButton mRemoveButton;
         public BottomPanel() {
             mDownloadButton = new JButton("Download");
+            mDownloadButton.addActionListener(btnListener);
             mRemoveButton = new JButton("Remove");
             add(mDownloadButton);
             add(mRemoveButton);

@@ -88,7 +88,7 @@ public class TestDownloadAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent anActionEvent) {
-//        readConfigFile();
-        readZipFile();
+        readConfigFile();
+//          readZipFile();
     }
 }
